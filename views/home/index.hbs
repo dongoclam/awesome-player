@@ -1,0 +1,46 @@
+<div class="select-file">
+  <div id="dropzone">
+    <div class="dropzone-panel">
+      <i class="fal fa-folder"></i>
+      <h1 class="dropzone-title">Drag & Drop</h1>
+      <p class="dropzone-select">Or select files from your system</h1>
+      <div id="toggle-dropzone" class="d-none">
+        <i class="fal fa-chevron-up"></i>
+      </div>
+    </div>
+  </div>
+  <div id="loading">
+    <img src="../../img/loading.svg">
+  </div>
+</div>
+<div id="main-view">
+  <div id="video-container">
+    <video id="video" class="simple-video current-video" preload="metadata"></video>
+    {{!-- <div class="subtitle-action">
+      <button class="btn btn-subtitle btn-get-subtitle"><i class="fal fa-wand-magic"></i>Get subtitle</button>
+      <button class="btn btn-subtitle btn-download-subtitle">Download subtitle</button>
+    </div> --}}
+  </div>
+  <div id="playlist-container">
+    <div id="playlist-toggle"></div>
+    <div id="video-playlist">
+      <video class="current-video" preload="metadata"></video>
+      <form class="form-inline">
+        <div class="form-group">
+          <select id="inputState" class="form-control">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <button class="btn btn-subtitle btn-get-subtitle"><i class="fal fa-wand-magic"></i>Get subtitle</button>
+      </form>
+      <div class="video-playlist-action">
+        <div class="search">
+          <input type="text" placeholder="Search">
+          <i class="fal fa-search"></i>
+        </div>
+      </div>
+      <div id="video-playlist-scroll"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Awesome Player</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,700&display=swap&subset=latin-ext,vietnamese"
+      rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.4.0/smooth-scrollbar.js"
+      integrity="sha256-l45B7hZCbzb7pGmXPjRMswu0KNsBL1QQ8NOtqM2iioc=" crossorigin="anonymous"></script>
+    <link href="./public/vendor/css/fonts/font-face.css" rel="stylesheet" />
+    <link href="./public/vendor/css/fontawesome.css" rel="stylesheet" />
+    <link href="./public/css/home.css" rel="stylesheet" />
+    <link href="./public/css/video.css" rel="stylesheet" />
+  </head>
+  <body class="">
+    <div class="wrapper">
+      <div class="container-fluid page-content">
+        <div class="main-view">
+          <div id="video-container">
+            <div class="video-wrapper">
+              <div class="video">
+                <video class="simple-video" data-id="1562337848098-0" fullpath="1. Welcome/1. Welcome to the Class!.mp4" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4">
+                  <track src="blob:http://localhost:8080/0e3ce3df-2fbc-48d5-ba74-35a92df2c776" kind="subtitles">
+                </video>
+                <div class="panel play show paused">
+                  <div class="panel-play-icon">
+                    <i class="fas fa-play"></i>
+                  </div>
+                </div>
+                <div class="video-control show">
+                  <div class="video-time">
+                    <span class="current-time">00:03</span>
+                    <span class="duration-time">06:07</span>
+                  </div>
+                  <div class="progress duration">
+                    <div class="progress-bar" style="width: 0.942004%;"></div>
+                  </div>
+                  <div class="actions">
+                    <div class="left-actions">
+                      <div class="btn-action play paused"></div>
+                      <div class="btn-action forward"></div>
+                      <div class="btn-action volume">
+                        <span class="volume-icon"></span>
+                        <div class="progress volume-duration">
+                          <div class="progress-bar" style="width: 100%;"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="right-actions">
+                      <div class="btn-action subtitle"></div>
+                      <div class="btn-action expand"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="subtitle-action">
+            </div>
+          </div>
+          <div id="video-playlist" class="open">
+            <div class="bg-blur"></div>
+            <div class="search">
+              <input type="text" placeholder="Search">
+              <i class="fal fa-search"></i>
+            </div>
+            <div class="video-playlist-action">
+              <p class="playlist">Playlist</p>
+            </div>
+            <div id="video-playlist-scroll" data-scrollbar="true" tabindex="-1" style="overflow: hidden; outline: none;">
+              <div class="scroll-content">
+                <ul class="tree">
+                  <li class="active">
+                    <video src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4#t=30"></video>
+                    <span class="tree-link" data-path="1. Welcome/1. Welcome to the Class!.mp4">1. Welcome to the Class!</span>
+                    <span class="video-time">4:12</span>
+                  </li>
+                  <li>
+                    <video src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4#t=30"></video>
+                    <span class="tree-link" data-path="1. Welcome/1. Welcome to the Class!.mp4">1. Welcome to the Class!</span>
+                    <span class="video-time">4:12</span>
+                  </li>
+                  <li>
+                    <video src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4#t=30"></video>
+                    <span class="tree-link" data-path="1. Welcome/1. Welcome to the Class!.mp4">1. Welcome to the Class!</span>
+                    <span class="video-time">4:12</span>
+                  </li>
+                  <li>
+                    <video src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4#t=30"></video>
+                    <span class="tree-link" data-path="1. Welcome/1. Welcome to the Class!.mp4">1. Welcome to the Class!</span>
+                    <span class="video-time">4:12</span>
+                  </li>
+                  <li>
+                    <video src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4#t=30"></video>
+                    <span class="tree-link" data-path="1. Welcome/1. Welcome to the Class!.mp4">1. Welcome to the Class!</span>
+                    <span class="video-time">4:12</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="scrollbar-track scrollbar-track-x" style="display: none;">
+                <div class="scrollbar-thumb scrollbar-thumb-x" style="width: 878px; transform: translate3d(0px, 0px, 0px);"></div>
+              </div>
+              <div class="scrollbar-track scrollbar-track-y" style="display: none;">
+                <div class="scrollbar-thumb scrollbar-thumb-y" style="height: 308px; transform: translate3d(0px, 0px, 0px);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="open-play-list d-none">
+          <i class="fal fa-chevron-down"></i>
+        </div>
+      </div>
+    </div>
+    <script src="./public/vendor/js/jquery.min.js"></script>
+    <script src="./public/js/video.js"></script>
+    <script src="./public/js/home.js"></script>
+  </body>
+</html>
