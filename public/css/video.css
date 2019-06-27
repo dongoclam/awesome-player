@@ -1,0 +1,276 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.video-wrapper {
+  display: flex;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.video-wrapper.expanded {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background: #000;
+  top: 0;
+  left: 0;
+}
+
+.video {
+  width: 100%;
+  margin: auto !important;
+  position: relative;
+  max-height: 100%;
+  height: 100vh;
+}
+
+.video video {
+  display: inherit;
+  width: 100%;
+}
+
+.video-wrapper.expanded .video video {
+  max-width: 100%;
+  min-height: 100vh;
+  border-radius: 0;
+}
+
+.video-wrapper.expanded .video .panel {
+  border-radius: 0;
+}
+
+.video .panel {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  opacity: 0;
+  transition: all .3s ease-in-out;
+  cursor: none;
+  background-image: linear-gradient(to bottom, #0000008a, #00000000, #00000052);
+}
+
+.video .panel.paused, .video .panel.show {
+  opacity: 1;
+  cursor: unset;
+}
+
+.panel .panel-video-name {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  padding: 30px;
+  font-size: 2rem;
+}
+
+.panel .panel-play-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 80px;
+  background: #00000087;
+  display: table;
+  margin: auto;
+  text-align: center;
+  opacity: 0;
+  transition: all .2s ease-in-out;
+}
+
+.video .panel.paused .panel-play-icon {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.panel .panel-play-icon i {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 2rem;
+  padding-left: 5px;
+  color: #fff;
+}
+
+.video-control {
+  width: 100%;
+  position: absolute;
+  padding: 0 20px;
+  bottom: 0;
+  box-sizing: border-box;
+  display: table;
+  cursor: none;
+  opacity: 0;
+  transition: all .3s ease-in-out;
+}
+
+.video-control.show {
+  cursor: unset;
+  opacity: 1;
+}
+
+.video-time {
+  display: flex;
+  color: #fff;
+  font-family: 'Quicksand', sans-serif;;
+  font-weight: 500;
+  font-size: 1.2rem;
+  padding: 5px 0;
+}
+
+.duration-time {
+  margin-left: auto;
+}
+
+.progress {
+  height: 10px;
+  background: rgba(0, 0, 0, 0.33);
+  max-width: 100%;
+  position: relative;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.progress-bar {
+  position: absolute;
+  height: 10px;
+  background: #fff;
+  width: 0;
+  border-radius: 5px;
+  transition: width .1s linear;
+}
+
+.progress-handle {
+  position: relative;
+  cursor: pointer;
+  width: 6px;
+  height: 6px;
+  border-radius: 14px;
+  background: #fff;
+  top: -15%;
+  left: 0;
+  display: none;
+  transition: scale .5s ease-in-out;
+}
+
+.actions {
+  color: #fff;
+  padding: 20px 0;
+  display: flex;
+}
+
+.left-actions, .right-actions {
+  display: -webkit-box;
+}
+
+.right-actions {
+  margin-left: auto;
+}
+
+.btn-action {
+  cursor: pointer;
+}
+
+.actions .btn-action {
+  padding: 0 15px;
+}
+
+.actions .btn-action i {
+  line-height: 1.8rem;
+  cursor: pointer;
+}
+
+.actions .play::before{
+  font-family: 'Font Awesome 5 Pro';
+  content: "\f04c";
+  font-weight: 900;
+  font-size: 1.6rem; 
+}
+
+.actions .play.paused::before{
+  content: "\f04b";
+}
+
+.forward::before {
+  content: "\f051";
+  font-family: 'Font Awesome 5 Pro';
+  font-weight: 900;
+  font-size: 1.7rem;
+}
+
+.volume {
+  width: 80%;
+  display: flex;
+  cursor: unset;
+}
+
+.volume:hover .progress {
+  width: 100%;
+}
+
+.volume .volume-icon {
+  margin: auto 0;
+}
+
+.volume .volume-icon::before {
+  font-family: 'Font Awesome 5 Pro';
+  content: "\f6a8";
+  display: block;
+  margin-right: 10px;
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1.8rem;
+  cursor: pointer;
+}
+
+.volume.muted .volume-icon::before {
+  content: "\f2e2";
+  font-size: 1.8rem;
+}
+
+.volume .progress {
+  width: 100%;
+  height: 6px;
+  margin: auto;
+  margin-left: 0;
+  width: 0;
+  background: #ffffff42;
+  transition: width .2s linear;
+}
+
+.volume .progress.active {
+  width: 100%;
+}
+
+.volume .progress-bar {
+  height: 6px;
+  width: 0;
+}
+
+.subtitle::before, .expand::before {
+  opacity: .6;
+  line-height: 1.8rem;
+}
+
+.subtitle::before {
+  font-family: 'Font Awesome 5 Pro';
+  content: "\f20a";
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.subtitle.active::before {
+  opacity: 1;
+  font-weight: 900;
+}
+
+.expand::before {
+  font-family: 'Font Awesome 5 Pro';
+  content: "\f065";
+  font-weight: 900;
+  font-size: 1.6rem;
+}
+
+.video-wrapper.expanded .expand::before {
+  content: "\f326";
+}

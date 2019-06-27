@@ -1,0 +1,31 @@
+{
+  "name": "awesome-player",
+  "version": "1.0.0",
+  "description": "Awesome player for video and audio",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dongoclam/awesome-player.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dongoclam/awesome-player/issues"
+  },
+  "homepage": "https://github.com/dongoclam/awesome-player#readme",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.0.19",
+    "express": "^4.17.1",
+    "fluent-ffmpeg": "^2.1.2",
+    "formidable": "^1.2.1",
+    "hbs": "^4.0.4",
+    "microsoft-cognitiveservices-speech-sdk": "^1.6.0",
+    "serve-favicon": "^2.5.0"
+  }
+}
