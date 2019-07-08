@@ -7,9 +7,11 @@ $(document).ready(function() {
   $mainView = $('#main-view');
   $loading = $('#loading');
   $dropzone = $('#dropzone');
-  $toggleDropzone = $('#toggle-dropzone');
+  $videoContainer = $('#video-container');
   $playlistContainer = $('#playlist-container');
   $playlistToggle = $('#playlist-toggle');
+  $selectFile = $('#select-file');
+  $playlistScroll = $('#video-playlist-scroll');
 
   video = $video.get(0);
 
@@ -32,12 +34,15 @@ $(document).ready(function() {
 
   dropzone.on('addedfiles', function() {
     setTimeout(function() {
-      dropzone.videoFiles = videoFiles();
+      dropzone.videoFiles = videoFiles().map(file => {
+        file.subtitle = getVideoSubtitle(file.fullPath)
+        return file;
+      });
+
       if(dropzone.videoFiles.length) {
         renderTreeFile();
-        initScrollbar();
         autoLoadVideo();
-        activeCurrentVideoLink();
+        initScrollbar();
       }
     }, 500);
   });
@@ -56,12 +61,13 @@ $(document).on('click', '.dropzone-panel', function() {
   $dropzone.click();
 });
 
-$(document).on('click', '.btn-add-more', function() {
+$(document).on('click', '.btn-back', function() {
   video.pause();
-  $mainView.toggleClass('open');
   $loading.hide();
   $dropzone.show();
-  $toggleDropzone.removeClass('d-none');
+  $mainView.toggleClass('open');
+  $selectFile.toggleClass('open');
+  $selectFile.find('.btn-back').removeClass('d-none');
 });
 
 $(document).on('click', '#toggle-dropzone', function(event) {
@@ -82,9 +88,17 @@ $(document).on('click', '#playlist-container', function(event) {
   }
 })
 
-$(document).on('click', '#video-playlist-scroll .tree li', function() {
+$(document).on('click', '#video-playlist-scroll .tree li', function(event) {
   var path = $(this).data('path');
   playVideo(path);
+});
+
+$(document).on('click', '#video-container', function(event) {
+  if(event.target == this) {
+    video.pause();
+    $playlistContainer.removeClass('blured');
+    $(this).removeClass('open');
+  }
 });
 
 $(document).on('click', '.remove', function() {
@@ -106,46 +120,61 @@ $(document).on('click', '.video .forward', function() {
   playVideo(nextPath);
 });
 
+window.onresize = setPlaylistHeight;
+window.onmousemove = setPlaylistHeight;
+window.onmouseenter = setPlaylistHeight;
+window.onmouseover = setPlaylistHeight;
+
 function autoLoadVideo() {
   var firstVideo = dropzone.videoFiles[0];
 
-  if(video.src) {
-    $mainView.addClass('open');
-  } else {
-    if(firstVideo) playVideo(firstVideo.fullPath, false);
-  }
+  $selectFile.toggleClass('open');
+  $mainView.toggleClass('open');
+
+  if(firstVideo) playVideo(firstVideo.fullPath, false);
 }
 
 function playVideo(path, play=true) {
   var videoFile = dropzone.files.find(file => file.fullPath == path);
-  var subtitleFile = getVideoSubtitle(path);
 
-  $video.children('track').remove();
   $video.attr('fullpath', path);
-
-  if (subtitleFile) {
-    $video.append(`<track src="${subtitleFile.source}" kind="subtitles">`);
-  }
-
   video.src = videoFile.source;
-  
-  if(play) video.play();
+  $videoContainer.addClass('open');
 
+  if (play) video.play();
+
+  addSubtitleTovideo(videoFile);
   activeCurrentVideoLink();
+}
+
+function addSubtitleTovideo(videoFile) {
+  var subtitle = videoFile.subtitle && videoFile.subtitle.source;
+  $video.children('track').remove();
+  if (subtitle) $video.append(`<track src="${subtitle}" kind="subtitles">`);
 }
 
 function activeCurrentVideoLink() {
   var path = $video.attr('fullpath');
-  var $linkWithPath = $(`.tree-link[data-path="${path}"]`);
+  var $linkWithPath = $(`li[data-path="${path}"]`);
   $('.tree li').removeClass('active');
   $linkWithPath.addClass('active');
 }
 
 function initScrollbar() {
-  scrollbar = Scrollbar.init(document.getElementById('video-playlist-scroll'), {
-    continuousScrolling: true,
+  setPlaylistHeight();
+  
+  scrollbar = Scrollbar.init($playlistScroll.get(0), {
+    continuousScrolling: false,
     alwaysShowTracks: false
   });
+}
+
+function setPlaylistHeight() {
+  var videoContainerHeight = $videoContainer.height();
+
+  if(videoContainerHeight) {
+    $playlistScroll.css('height', videoContainerHeight - 30 + 'px');
+  }
 }
 
 function videoFiles() {
@@ -179,15 +208,19 @@ function fileHTML() {
     var $video = $(`<video src="${video.source}"></video>`);
     var $videoPartial = $(
       `<li data-path="${video.fullPath}">
-        <span class="video-name">${videoName}</span>
+        <span class="video-name text-truncate">${videoName}</span>
+        <button data-path="${video.fullPath}" class="btn btn-get-subtitle">
+          <i class="fal fa-stars"></i>Subtitle
+        </button>
       </li>`
     );
 
     $video.get(0).addEventListener('loadeddata', function() {
       var videoDuration = timeConvert(this.duration);
       var $videoTime = $(`<span class="video-time">${videoDuration}</span>`);
-      $(this).closest('li').prepend($videoTime);
-    })
+      var $videoName = $(this).next('.video-name');
+      $videoTime.insertAfter($videoName);
+    });
 
     $videoPartial.prepend($video);
     $partial.append($videoPartial);
