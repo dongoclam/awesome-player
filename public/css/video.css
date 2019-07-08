@@ -58,13 +58,19 @@
   cursor: unset;
 }
 
+.panel.show .panel-video-name {
+  opacity: 1;
+}
+
 .panel .panel-video-name {
   position: absolute;
   top: 0;
   left: 0;
   color: #fff;
   padding: 30px;
-  font-size: 2rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+  opacity: 0;
 }
 
 .panel .panel-play-icon {
@@ -109,7 +115,7 @@
   opacity: 1;
 }
 
-.video-time {
+.video .video-time {
   display: flex;
   color: #fff;
   font-family: 'Quicksand', sans-serif;;

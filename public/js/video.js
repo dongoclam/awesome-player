@@ -80,8 +80,8 @@ window.onload = function() {
     videoWrapper.addEventListener('mouseout', function() {
       clearVideoTimeout(video);
       if(video.paused) return;
-      clearVideoTimeout(video);
-      setVideoTimeout(video, 1000);
+      clearVideoInterval(this);
+      setVideoTimeout(video, 500);
     });
 
     video.addEventListener('loadeddata', function() {
@@ -98,7 +98,7 @@ window.onload = function() {
       video.currentTime = 0;
       progress.dataset.duration = 0;
       progress.querySelector('.progress-bar').style.width = '0%';
-      panel.classList.add('show');
+      panel.classList.remove('show');
       videoControl.classList.remove('show');
     });
   
@@ -179,11 +179,6 @@ browserPrefixes.forEach(prefix => {
     var videoWrapper = this.querySelector('.video-wrapper');
     videoWrapper && videoWrapper.classList.toggle('expanded');
   });
-});
-
-document.addEventListener('fullscreenchange', function () {
-  var videoWrapper = this.querySelector('.video-wrapper.expanded');
-  videoWrapper && videoWrapper.classList.toggle('expanded');
 });
 
 window.addEventListener('mouseup', function () {
@@ -291,7 +286,7 @@ function setVideoInterval(video) {
   }
 }
 
-function setVideoTimeout(video, time = 3000) {
+function setVideoTimeout(video, time = 1000) {
   var videoContainer = video.closest('.video');
   var panel = videoContainer.querySelector('.panel');
   var videoControl = videoContainer.querySelector('.video-control');

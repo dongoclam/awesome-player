@@ -6,9 +6,6 @@ class Transcription {
   constructor() {}
 }
 
-Transcription.serviceRegion = 'centralus'
-Transcription.subscriptionKey = '64471df34e4a4d97a9eee045b88f344e'
-
 Transcription.speechToText = function(filename, language = 'en-US') {
   const filePath = config.uploadDir + filename
   const pushStream = sdk.AudioInputStream.createPushStream()
@@ -23,8 +20,8 @@ Transcription.speechToText = function(filename, language = 'en-US') {
 
   const audioConfig = sdk.AudioConfig.fromStreamInput(pushStream)
   const speechConfig = sdk.SpeechConfig.fromSubscription(
-    this.subscriptionKey,
-    this.serviceRegion
+    process.env.SUB_SCRIPTION_KEY,
+    process.env.SERVICE_REGION
   )
 
   speechConfig.speechRecognitionLanguage = language
