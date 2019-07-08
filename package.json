@@ -21,6 +21,7 @@
   "homepage": "https://github.com/dongoclam/awesome-player#readme",
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.0.19",
+    "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "fluent-ffmpeg": "^2.1.2",
     "formidable": "^1.2.1",
