@@ -25,6 +25,7 @@
     "express": "^4.17.1",
     "fluent-ffmpeg": "^2.1.2",
     "formidable": "^1.2.1",
+    "googleapis": "^39.2.0",
     "hbs": "^4.0.4",
     "microsoft-cognitiveservices-speech-sdk": "^1.6.0",
     "serve-favicon": "^2.5.0"
